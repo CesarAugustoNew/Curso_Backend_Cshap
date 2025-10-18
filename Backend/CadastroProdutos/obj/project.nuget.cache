@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Uf0INjgk7pI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pichau\\Downloads\\AULA\\Curso_Backend_Cshap\\Backend\\CadastroProdutos\\CadastroProdutos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

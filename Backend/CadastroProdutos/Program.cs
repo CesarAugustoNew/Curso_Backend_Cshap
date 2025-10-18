@@ -39,7 +39,7 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-app.Run();
+
 
 var produtos = new List<Produto>()
 {
@@ -61,7 +61,42 @@ app.MapGet("/produtos/{id}", (int id) =>
         : Results.NotFound($"Produto com ID {id} não encontrado.");
 });
 
-app.MapGet("/test", () => "Esse é um endpoint de teste");
+app.MapPost("/produtos", (Produto novoproduto) =>
+{
+    produtos.Add(novoproduto);
+});
+
+app.MapPut("/produtos/{id}", (int id, Produto produtoAtualizado) =>
+{
+    var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+    if (produto is null)
+    {
+        return Results.NotFound($"Produto com ID {id} não encontrado.");
+    }
+
+    produto.Nome = produtoAtualizado.Nome;
+    produto.Preco = produtoAtualizado.Preco;
+    produto.Estoque = produtoAtualizado.Estoque;
+
+    return Results.Ok(produto);
+});
+
+app.MapDelete("/produtos/{id}", (int id) =>
+{
+    var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+    if (produto is null)
+    {
+        return Results.NotFound($"Produto com ID {id} não encontrado.");
+    }
+
+    produtos.Remove(produto);
+
+    return Results.NoContent();
+});
+
+app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {

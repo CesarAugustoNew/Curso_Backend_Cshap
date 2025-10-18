@@ -2,7 +2,7 @@ using System;
 
 namespace CadastroProdutos.Services;
 
-public class ProdutosService
+public class ProdutosService : IProdutosServices
 {
     private static List<Produto> produtos = new List<Produto>()
     {

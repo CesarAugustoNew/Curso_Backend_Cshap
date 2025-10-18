@@ -9,7 +9,7 @@ namespace CadastroProdutos.Controllers
     public class ProdutosController : ControllerBase
     {
 
-        private ProdutosService produtosService = new ProdutosService();
+        private IProdutosServices produtosService = new ProdutosService();
 
         [HttpGet]
         public ActionResult<List<Produto>> Get()

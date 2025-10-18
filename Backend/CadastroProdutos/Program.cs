@@ -52,6 +52,15 @@ app.MapGet("/produtos", () =>
     return produtos;
 });
 
+app.MapGet("/produtos/{id}", (int id) =>
+{
+    var produto = produtos.FirstOrDefault(x => x.Id == id);
+
+    return produtos is not null
+        ? Results.Ok(produto)
+        : Results.NotFound($"Produto com ID {id} não encontrado.");
+});
+
 app.MapGet("/test", () => "Esse é um endpoint de teste");
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

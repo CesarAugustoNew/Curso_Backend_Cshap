@@ -16,7 +16,7 @@ Também inclui boas práticas de arquitetura, injeção de dependência e separa
 
 - **Linguagem:** C#  
 - **Framework:** ASP.NET Core Web API  
-- **ORM / Banco de Dados:** Entity Framework Core (SQL Server, SQLite, ou outro configurado)  
+- **ORM / Banco de Dados:** Entity Framework Core (SQLite)  
 - **Autenticação:** JWT (JSON Web Token)  
 - **Arquitetura:** em camadas (Controller → Service → Repository)  
 - **Boas Práticas:** injeção de dependência, configuração via appsettings, segurança de endpoints  

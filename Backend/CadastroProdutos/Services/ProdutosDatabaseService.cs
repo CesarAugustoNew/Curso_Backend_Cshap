@@ -72,7 +72,7 @@ public class ProdutosDatabaseService : IProdutosServices
 
         if (produto.Estoque > 1000)
         {
-            throw new Exception("O estoque não pode ser maior do 1000 unidades.");
+            throw new Exception("O estoque não pode ser maior que 1000 unidades.");
         }
     }
 }

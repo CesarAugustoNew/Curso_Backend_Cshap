@@ -10,7 +10,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IProdutosServices, ProdutosService>();
+//builder.Services.AddScoped<IProdutosServices, ProdutosService>();
+builder.Services.AddScoped<IProdutosServices, ProdutosDatabaseService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite("Data Source = Produtos.db"));
 
 var app = builder.Build();

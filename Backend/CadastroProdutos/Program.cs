@@ -1,7 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using CadastroProdutos.Database;
 using CadastroProdutos.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +19,26 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProdutosServices, ProdutosDatabaseService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite("Data Source = Produtos.db"));
 
+var jwtConfig = builder.Configuration.GetSection("Jwt");
+var key = Encoding.ASCII.GetBytes(jwtConfig["Key"]);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtConfig["Issuer"],
+        ValidAudience = jwtConfig["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
+ 
 var app = builder.Build();
 
 app.MapControllers();
@@ -30,6 +53,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 var summaries = new[]
 {
@@ -118,12 +144,21 @@ public class Produto
 {
     public int Id { get; set; }
     [Required(ErrorMessage = "O nome do produto é obrigatorio.")]
-    [StringLength(100, ErrorMessage ="O nome pode ter no maximo 100 caracteres.")]
+    [StringLength(100, ErrorMessage = "O nome pode ter no maximo 100 caracteres.")]
     public string Nome { get; set; }
 
     [Range(0.01, double.MaxValue, ErrorMessage = "O preço deve ser maior que zero.")]
     public decimal Preco { get; set; }
 
-    [Range(0, int.MaxValue, ErrorMessage ="O estoque não pode ser negativo")]
+    [Range(0, int.MaxValue, ErrorMessage = "O estoque não pode ser negativo")]
     public int Estoque { get; set; }
+}
+
+public class Login
+{
+    [Required]
+    public string Usuario { get; set; }
+    
+    [Required]
+    public string Senha { get; set; }
 }

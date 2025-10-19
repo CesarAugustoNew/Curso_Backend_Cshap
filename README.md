@@ -8,6 +8,7 @@ Este repositório acompanha o desenvolvimento de um **backend completo** em **C#
 
 O projeto aborda desde a criação de **APIs com C# e ASP.NET Core**, até a persistência de dados com **Entity Framework Core** e a implementação de **autenticação JWT** para segurança.  
 Também inclui boas práticas de arquitetura, injeção de dependência e separação de responsabilidades.
+<img  height="914" alt="image" src="https://github.com/user-attachments/assets/d91378f4-a65a-444e-a240-73b5214b5578" />
 
 ---
 

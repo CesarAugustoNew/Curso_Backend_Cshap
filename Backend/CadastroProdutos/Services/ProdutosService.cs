@@ -1,4 +1,5 @@
 using System;
+using CadastroProdutos.Models;
 
 namespace CadastroProdutos.Services;
 

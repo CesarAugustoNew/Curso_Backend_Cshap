@@ -2,6 +2,7 @@ using CadastroProdutos.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CadastroProdutos.Models;
 
 namespace CadastroProdutos.Controllers
 {

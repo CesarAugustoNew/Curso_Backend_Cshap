@@ -6,6 +6,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using CadastroProdutos.Models;
 
 namespace CadastroProdutos.Controllers
 {
